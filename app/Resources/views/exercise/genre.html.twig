@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div>
+        <table border="1">
+            <tr>
+                <td>Genre:</td>
+                <td>{{ genre.name }}</td>
+            </tr>
+            <tr>
+                <td>Books</td>
+                <td>
+                        <ul>
+                            {% for book in genre.books %}
+                                <li><a href="/book/{{ book.title }}">{{ book.title }}</a></li>
+                            {% endfor %}
+                        </ul>
+                </td>
+            </tr>
+        </table>
+    </div>
+{% endblock %}
+
+

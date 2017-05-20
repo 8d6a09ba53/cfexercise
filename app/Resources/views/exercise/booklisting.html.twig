@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+        {% if books|length > 0 %}
+    <div>
+        <table border="1">
+            <tr>
+                <th>#</th>
+                <th>Title</th>
+                <th>Released</th>
+                <th>Pages</th>
+                <th>Genre</th>
+            </tr>
+            {% for book in books %}
+            <tr>
+                <td>{{ loop.index }}</td>
+                <td><a href="/book/{{ book.title }}">{{ book.title }}</a></td>
+                <td>{{ book.releaseDate.format('Y-m-d') }}</td>
+                <td>{{ book.length }}</td>
+                <td>{% if book.genres|length > 0 %}
+                        <ul>
+                            {% for genre in book.genres %}
+                                <li><a href="/genre/{{ genre.name }}">{{ genre.name }}</a></li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        n/a
+                    {% endif %}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        {% if showbutton %}
+        <a href="/all"><button>More</button></a>
+        {% endif %}
+    </div>
+        {% else %}
+    <div>
+        no books found
+    </div>
+        {% endif %}
+{% endblock %}
+
+
